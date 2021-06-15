@@ -1,8 +1,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const cellSize = 12; // 12x12 px
-const fps = 1;
+const cellSize = 18; // 12x12 px
+const fps = 0.1;
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 
@@ -21,4 +21,5 @@ function draw() {
   }
 }
 
+draw();
 setInterval(draw, 1000 / fps);
