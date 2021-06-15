@@ -3,8 +3,12 @@ const ctx = canvas.getContext("2d");
 
 const cellSize = 18; // 12x12 px
 const fps = 0.1;
+
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
+
+const gridWidth = Math.floor(windowWidth / cellSize);
+const gridHeight = Math.floor(windowHeight / cellSize);
 
 canvas.width = windowWidth;
 canvas.height = windowHeight;
@@ -16,12 +20,19 @@ function click(e) {
   const y = Math.floor(e.pageY / cellSize);
 }
 
+const grid = new Array(gridHeight).fill(new Array(gridWidth).fill(true));
+
 function draw() {
-  for (let y = 0; y < cellSize * windowHeight; y += cellSize) {
-    for (let x = 0; x < cellSize * windowWidth; x += cellSize) {
+  for (let y = 0; y <= gridHeight; y++) {
+    for (let x = 0; x <= gridWidth; x++) {
       ctx.fillStyle = "white";
       ctx.beginPath();
-      ctx.rect(x, y, x + cellSize, y + cellSize);
+      ctx.rect(
+        x * cellSize,
+        y * cellSize,
+        x * cellSize + cellSize,
+        y * cellSize + cellSize
+      );
       ctx.fill();
       ctx.stroke();
     }
