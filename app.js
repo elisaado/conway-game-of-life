@@ -14,6 +14,7 @@ canvas.width = windowWidth;
 canvas.height = windowHeight;
 
 canvas.addEventListener("click", click, false);
+document.getElementById("startButton").addEventListener("click", start, false);
 
 function click(e) {
   const x = Math.floor(e.pageX / cellSize);
@@ -45,4 +46,7 @@ function draw() {
 }
 
 draw();
-setInterval(draw, 1000 / fps);
+
+function start() {
+  setInterval(draw, 1000 / fps);
+}
