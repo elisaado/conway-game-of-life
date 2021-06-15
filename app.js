@@ -20,7 +20,11 @@ function click(e) {
   const y = Math.floor(e.pageY / cellSize);
 }
 
-const grid = new Array(gridHeight).fill(new Array(gridWidth).fill(true));
+const grid = Array.from({ length: gridHeight }, (e) =>
+  Array(gridWidth)
+    .fill(true)
+    .map((x) => Math.random() > 0.5)
+);
 
 function draw() {
   for (let y = 0; y < gridHeight; y++) {
