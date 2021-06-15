@@ -23,9 +23,10 @@ function click(e) {
 const grid = new Array(gridHeight).fill(new Array(gridWidth).fill(true));
 
 function draw() {
-  for (let y = 0; y <= gridHeight; y++) {
-    for (let x = 0; x <= gridWidth; x++) {
-      ctx.fillStyle = "white";
+  for (let y = 0; y < gridHeight; y++) {
+    for (let x = 0; x < gridWidth; x++) {
+      cell = grid[y][x];
+      ctx.fillStyle = cell ? "red" : "white";
       ctx.beginPath();
       ctx.rect(
         x * cellSize,
