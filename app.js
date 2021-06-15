@@ -10,16 +10,12 @@ canvas.width = windowWidth;
 canvas.height = windowHeight;
 
 function draw() {
-  for (let x = 0; x < cellSize * windowWidth; x += cellSize) {
-    for (let y = 0; y < cellSize * windowHeight; y += cellSize) {
+  for (let y = 0; y < cellSize * windowHeight; y += cellSize) {
+    for (let x = 0; x < cellSize * windowWidth; x += cellSize) {
+      ctx.fillStyle = "white";
       ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(cellSize + x, y);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(x, cellSize + y);
+      ctx.rect(x, y, x + cellSize, y + cellSize);
+      ctx.fill();
       ctx.stroke();
     }
   }
