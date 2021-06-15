@@ -12,7 +12,8 @@ canvas.height = windowHeight;
 canvas.addEventListener("click", click, false);
 
 function click(e) {
-  console.log(`${e.pageX} ${e.pageY}`);
+  const x = Math.floor(e.pageX / cellSize);
+  const y = Math.floor(e.pageY / cellSize);
 }
 
 function draw() {
