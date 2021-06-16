@@ -26,7 +26,7 @@ function click(e) {
 }
 
 const grid = Array.from({ length: gridHeight }, (e) =>
-  Array(gridWidth).fill(true)
+  Array(gridWidth).fill(false)
 );
 
 function simulate() {}
