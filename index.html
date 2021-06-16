@@ -22,17 +22,23 @@
         display: block;
       }
 
-      button {
+      #controls {
         position: absolute;
         opacity: 0.8;
+      }
+
+      button {
         font-size: large;
       }
     </style>
   </head>
   <body>
-    <button id="startButton">start</button>
-    <button id="stepButton">step</button>
-    <button id="stopButton">stop</button>
+    <div id="controls">
+      <button id="startButton">start</button>
+      <button id="stepButton">step</button>
+      <button id="stopButton">stop</button>
+    </div>
+
     <canvas id="canvas"></canvas>
   </body>
 </html>
