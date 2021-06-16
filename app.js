@@ -41,23 +41,23 @@ function getNeighboors(x, y) {
     neighboors.push(grid[y][x - 1]);
   }
   if (y > 0 && x > 0) {
-    neighboors.push(grid[y - 1]);
+    neighboors.push(grid[y - 1][x - 1]);
   }
 
-  if (y < gridHeight - 2) {
+  if (y < gridHeight - 1) {
     neighboors.push(grid[y + 1][x]);
   }
-  if (x < gridWidth - 2) {
+  if (x < gridWidth - 1) {
     neighboors.push(grid[y][x + 1]);
   }
-  if (y < gridHeight - 2 && x < gridWidth - 2) {
+  if (y < gridHeight - 1 && x < gridWidth - 1) {
     neighboors.push(grid[y + 1][x + 1]);
   }
 
-  if (x > 0 && y < gridHeight - 2) {
+  if (x > 0 && y < gridHeight - 1) {
     neighboors.push(grid[y + 1][x - 1]);
   }
-  if (y > 0 && x < gridWidth - 2) {
+  if (y > 0 && x < gridWidth - 1) {
     neighboors.push(grid[y - 1][x + 1]);
   }
   return neighboors.filter(Boolean);
@@ -116,6 +116,10 @@ function draw() {
       ctx.stroke();
     }
   }
+
+  ctx.fillStyle = "black";
+  ctx.font = "36px Arial";
+  ctx.fillText(`Generation: ${generation}`, 50, 50);
 }
 
 draw();
@@ -123,7 +127,7 @@ draw();
 function start() {
   setInterval(() => {
     simulate();
-    applyChanges;
+    applyChanges();
     draw();
   }, 1000 / fps);
 }
