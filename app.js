@@ -83,16 +83,16 @@ function simulate() {
       cell = grid[y][x];
       sumOfNeighboors = getNeighboors(x, y).length;
       if (cell && sumOfNeighboors < 2) {
-        grid[y][x] = false; // die
+        queueChange(x, y, false); // die
         console.log(x, y, "die");
       } else if (cell && sumOfNeighboors <= 3) {
         console.log(x, y, "live on");
         // live on to next generation
       } else if (cell && sumOfNeighboors > 3) {
-        grid[y][x] = false; // die
+        queueChange(x, y, false); // die
         console.log(x, y, "die");
       } else if (!cell && sumOfNeighboors === 3) {
-        grid[y][x] = true; // become live
+        queueChange(x, y, true); // become live
         console.log(x, y, "live");
       }
     }
