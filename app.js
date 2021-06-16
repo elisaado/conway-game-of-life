@@ -29,7 +29,21 @@ const grid = Array.from({ length: gridHeight }, (e) =>
   Array(gridWidth).fill(false)
 );
 
+function getNeighboors(x, y) {
+  return [
+    grid[y - 1][x - 1],
+    grid[y][x - 1],
+    grid[y + 1][x - 1],
+    grid[y - 1][x],
+    grid[y + 1][x],
+    grid[y - 1][x + 1],
+    grid[y][x + 1],
+    grid[y + 1][x + 1],
+  ].filter();
+}
+
 function simulate() {}
+
 function draw() {
   for (let y = 0; y < gridHeight; y++) {
     for (let x = 0; x < gridWidth; x++) {
