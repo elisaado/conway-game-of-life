@@ -26,9 +26,7 @@ function click(e) {
 }
 
 const grid = Array.from({ length: gridHeight }, (e) =>
-  Array(gridWidth)
-    .fill(true)
-    .map((x) => Math.random() > 0.5)
+  Array(gridWidth).fill(true)
 );
 
 function simulate() {}
