@@ -131,10 +131,13 @@ function nextGeneration() {
   draw();
 }
 
+let renderInterval;
 function start() {
-  setInterval(() => {
+  renderInterval = setInterval(() => {
     nextGeneration();
   }, 1000 / fps);
 }
 
-function stop() {}
+function stop() {
+  if (renderInterval) clearInterval(renderInterval);
+}
