@@ -42,7 +42,17 @@ function getNeighboors(x, y) {
   ].filter();
 }
 
-function simulate() {}
+function simulate() {
+  for (let y = 0; y < grid.length; y++) {
+    for (let x = 0; x < grid.length; x++) {
+      cell = grid[y][x];
+      sumOfNeighboors = getNeighboors(x, y).filter(Boolean).length;
+
+      switch (sumOfNeighboors) {
+      }
+    }
+  }
+}
 
 function draw() {
   for (let y = 0; y < gridHeight; y++) {
