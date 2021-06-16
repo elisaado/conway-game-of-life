@@ -65,7 +65,7 @@ function getNeighboors(x, y) {
 
 let changesQueue = [];
 
-function queueChanges() {
+function queueChange(x, y, state) {
   changesQueue.push({ x, y, state });
 }
 
@@ -123,7 +123,7 @@ draw();
 function start() {
   setInterval(() => {
     simulate();
-    applyChanges();
+    applyChanges;
     draw();
   }, 1000 / fps);
 }
