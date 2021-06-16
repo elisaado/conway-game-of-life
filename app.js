@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const cellSize = 18; // 12x12 px
-const fps = 0.1;
+const fps = 1;
 
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
@@ -25,33 +25,65 @@ function click(e) {
   draw();
 }
 
+let generation = 0;
+
 const grid = Array.from({ length: gridHeight }, (e) =>
-  Array(gridWidth).fill(false)
+  Array.from({ length: gridWidth }, () => false)
 );
 
 function getNeighboors(x, y) {
-  return [
-    grid[y - 1][x - 1],
-    grid[y][x - 1],
-    grid[y + 1][x - 1],
-    grid[y - 1][x],
-    grid[y + 1][x],
-    grid[y - 1][x + 1],
-    grid[y][x + 1],
-    grid[y + 1][x + 1],
-  ].filter(Boolean);
+  let neighboors = [];
+
+  if (y > 0) {
+    neighboors.push(grid[y - 1][x]);
+  }
+  if (x > 0) {
+    neighboors.push(grid[y][x - 1]);
+  }
+  if (y > 0 && x > 0) {
+    neighboors.push(grid[y - 1]);
+  }
+
+  if (y < gridHeight - 2) {
+    neighboors.push(grid[y + 1][x]);
+  }
+  if (x < gridWidth - 2) {
+    neighboors.push(grid[y][x + 1]);
+  }
+  if (y < gridHeight - 2 && x < gridWidth - 2) {
+    neighboors.push(grid[y + 1][x + 1]);
+  }
+
+  if (x > 0 && y < gridHeight - 2) {
+    neighboors.push(grid[y + 1][x - 1]);
+  }
+  if (y > 0 && x < gridWidth - 2) {
+    neighboors.push(grid[y - 1][x + 1]);
+  }
+  return neighboors.filter(Boolean);
 }
 
 function simulate() {
-  for (let y = 0; y < grid.length; y++) {
-    for (let x = 0; x < grid.length; x++) {
+  for (let y = 0; y < gridHeight; y++) {
+    for (let x = 0; x < gridWidth; x++) {
       cell = grid[y][x];
       sumOfNeighboors = getNeighboors(x, y).length;
-
-      switch (sumOfNeighboors) {
+      if (cell && sumOfNeighboors < 2) {
+        grid[y][x] = false; // die
+        console.log(x, y, "die");
+      } else if (cell && sumOfNeighboors <= 3) {
+        console.log(x, y, "live on");
+        // live on to next generation
+      } else if (cell && sumOfNeighboors > 3) {
+        grid[y][x] = false; // die
+        console.log(x, y, "die");
+      } else if (!cell && sumOfNeighboors === 3) {
+        grid[y][x] = true; // become live
+        console.log(x, y, "live");
       }
     }
   }
+  generation++;
 }
 
 function draw() {
