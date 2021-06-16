@@ -39,14 +39,14 @@ function getNeighboors(x, y) {
     grid[y - 1][x + 1],
     grid[y][x + 1],
     grid[y + 1][x + 1],
-  ].filter();
+  ].filter(Boolean);
 }
 
 function simulate() {
   for (let y = 0; y < grid.length; y++) {
     for (let x = 0; x < grid.length; x++) {
       cell = grid[y][x];
-      sumOfNeighboors = getNeighboors(x, y).filter(Boolean).length;
+      sumOfNeighboors = getNeighboors(x, y).length;
 
       switch (sumOfNeighboors) {
       }
