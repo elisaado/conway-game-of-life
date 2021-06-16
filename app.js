@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const cellSize = 18; // 12x12 px
-const fps = 30;
+let fps = 30;
 
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
@@ -22,6 +22,14 @@ document
   .addEventListener("click", nextGeneration, false);
 
 document.getElementById("stopButton").addEventListener("click", stop, false);
+document.getElementById("fpsSlider").addEventListener(
+  "input",
+  () => {
+    fps = Number(document.getElementById("fpsSlider").value);
+  },
+  false
+);
+document.getElementById("fpsSlider").value = 15;
 
 function click(e) {
   const x = Math.floor(e.pageX / cellSize);
