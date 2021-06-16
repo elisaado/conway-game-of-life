@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const cellSize = 18; // 12x12 px
-const fps = 1;
+const fps = 30;
 
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
@@ -84,16 +84,12 @@ function simulate() {
       sumOfNeighboors = getNeighboors(x, y).length;
       if (cell && sumOfNeighboors < 2) {
         queueChange(x, y, false); // die
-        console.log(x, y, "die");
       } else if (cell && sumOfNeighboors <= 3) {
-        console.log(x, y, "live on");
         // live on to next generation
       } else if (cell && sumOfNeighboors > 3) {
         queueChange(x, y, false); // die
-        console.log(x, y, "die");
       } else if (!cell && sumOfNeighboors === 3) {
         queueChange(x, y, true); // become live
-        console.log(x, y, "live");
       }
     }
   }
