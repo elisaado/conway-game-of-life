@@ -51,36 +51,36 @@ const grid = Array.from({ length: gridHeight }, (e) =>
   Array.from({ length: gridWidth }, () => false)
 );
 
-function getNeighboors(x, y) {
-  let neighboors = [];
+function getNeighbours(x, y) {
+  let neighbours = [];
 
   if (y > 0) {
-    neighboors.push(grid[y - 1][x]);
+    neighbours.push(grid[y - 1][x]);
   }
   if (x > 0) {
-    neighboors.push(grid[y][x - 1]);
+    neighbours.push(grid[y][x - 1]);
   }
   if (y > 0 && x > 0) {
-    neighboors.push(grid[y - 1][x - 1]);
+    neighbours.push(grid[y - 1][x - 1]);
   }
 
   if (y < gridHeight - 1) {
-    neighboors.push(grid[y + 1][x]);
+    neighbours.push(grid[y + 1][x]);
   }
   if (x < gridWidth - 1) {
-    neighboors.push(grid[y][x + 1]);
+    neighbours.push(grid[y][x + 1]);
   }
   if (y < gridHeight - 1 && x < gridWidth - 1) {
-    neighboors.push(grid[y + 1][x + 1]);
+    neighbours.push(grid[y + 1][x + 1]);
   }
 
   if (x > 0 && y < gridHeight - 1) {
-    neighboors.push(grid[y + 1][x - 1]);
+    neighbours.push(grid[y + 1][x - 1]);
   }
   if (y > 0 && x < gridWidth - 1) {
-    neighboors.push(grid[y - 1][x + 1]);
+    neighbours.push(grid[y - 1][x + 1]);
   }
-  return neighboors.filter(Boolean);
+  return neighbours.filter(Boolean);
 }
 
 let changesQueue = [];
@@ -101,14 +101,14 @@ function simulate() {
   for (let y = 0; y < gridHeight; y++) {
     for (let x = 0; x < gridWidth; x++) {
       cell = grid[y][x];
-      sumOfNeighboors = getNeighboors(x, y).length;
-      if (cell && sumOfNeighboors < 2) {
+      sumOfNeighbours = getNeighbours(x, y).length;
+      if (cell && sumOfNeighbours < 2) {
         queueChange(x, y, false); // die
-      } else if (cell && sumOfNeighboors <= 3) {
+      } else if (cell && sumOfNeighbours <= 3) {
         // live on to next generation
-      } else if (cell && sumOfNeighboors > 3) {
+      } else if (cell && sumOfNeighbours > 3) {
         queueChange(x, y, false); // die
-      } else if (!cell && sumOfNeighboors === 3) {
+      } else if (!cell && sumOfNeighbours === 3) {
         queueChange(x, y, true); // become live
       }
     }
