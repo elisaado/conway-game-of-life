@@ -63,6 +63,20 @@ function getNeighboors(x, y) {
   return neighboors.filter(Boolean);
 }
 
+let changesQueue = [];
+
+function queueChanges() {
+  changesQueue.push({ x, y, state });
+}
+
+function applyChanges() {
+  while (true) {
+    const change = changesQueue.pop(0); // get first change and remove from array
+    if (!change) break;
+    grid[change.y][change.x] = change.state;
+  }
+}
+
 function simulate() {
   for (let y = 0; y < gridHeight; y++) {
     for (let x = 0; x < gridWidth; x++) {
@@ -109,6 +123,7 @@ draw();
 function start() {
   setInterval(() => {
     simulate();
+    applyChanges();
     draw();
   }, 1000 / fps);
 }
