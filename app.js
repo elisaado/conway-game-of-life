@@ -120,10 +120,14 @@ function draw() {
 
 draw();
 
+function nextGeneration() {
+  simulate();
+  applyChanges();
+  draw();
+}
+
 function start() {
   setInterval(() => {
-    simulate();
-    applyChanges();
-    draw();
+    nextGeneration();
   }, 1000 / fps);
 }
