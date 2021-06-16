@@ -29,6 +29,10 @@ document.getElementById("fpsSlider").addEventListener(
   "input",
   () => {
     fps = Number(document.getElementById("fpsSlider").value);
+    if (running) {
+      stop();
+      start();
+    }
   },
   false
 );
