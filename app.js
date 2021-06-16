@@ -17,6 +17,11 @@ let mouseDown = false;
 canvas.addEventListener("mousedown", click, false);
 canvas.addEventListener("mouseup", () => (mouseDown = false), false);
 document.getElementById("startButton").addEventListener("click", start, false);
+document
+  .getElementById("stepButton")
+  .addEventListener("click", nextGeneration, false);
+
+document.getElementById("stopButton").addEventListener("click", stop, false);
 
 function click(e) {
   const x = Math.floor(e.pageX / cellSize);
@@ -131,3 +136,5 @@ function start() {
     nextGeneration();
   }, 1000 / fps);
 }
+
+function stop() {}
