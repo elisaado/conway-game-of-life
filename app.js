@@ -10,6 +10,9 @@ const windowHeight = window.innerHeight;
 const gridWidth = Math.floor(windowWidth / cellSize);
 const gridHeight = Math.floor(windowHeight / cellSize);
 
+let renderInterval;
+let running = false;
+
 canvas.width = windowWidth;
 canvas.height = windowHeight;
 let mouseDown = false;
@@ -139,13 +142,16 @@ function nextGeneration() {
   draw();
 }
 
-let renderInterval;
 function start() {
+  running = true;
   renderInterval = setInterval(() => {
     nextGeneration();
   }, 1000 / fps);
 }
 
 function stop() {
-  if (renderInterval) clearInterval(renderInterval);
+  if (renderInterval && running) {
+    clearInterval(renderInterval);
+    running = false;
+  }
 }
